@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect }  from "react";
+
+const jobsStatic = [
+  "Get On Board",
+  "Archdaily",
+  "4talent",
+  "ZimplePr",
+  "LatamTicket",
+  "Spanish Safari",
+  "Ibericana",
+  "Metaenergy"
+];
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    const results = jobsStatic.filter(person =>
+      person.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [searchQuery]);
+
+  const handleChange = event => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        type="text"
+        placeholder="Search Jobs"
+        value={searchQuery}
+        onChange={handleChange}
+      />
+      <ul>
+        {searchResults.map(item => <li>{item}</li>)}
+      </ul>
     </div>
   );
 }
