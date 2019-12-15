@@ -7,7 +7,6 @@ function FavoriteButton({jobData}){
   const {session} = useContext(SessionContext);
   const loggedIn = session && session.email ? true : false;
   const toolTip = loggedIn ? 'Mark as Favorite' : 'Log in to mark as favorite!';
-
   const [favorite, setFavorite] = useState(jobData.favorite);
   const iconName = favorite ? 'heart' : 'heart outline';
   const baseUrl = 'https://mighty-fortress-18011.herokuapp.com/favorites';

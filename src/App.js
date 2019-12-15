@@ -18,6 +18,8 @@ function App() {
     setSessionCookie(session);
   }, [session]);
 
+  const searchDependencies = {job, searchQuery};
+
   return (
     <div className="App">
       <SessionContext.Provider value={{session, setSession}}>
@@ -40,7 +42,7 @@ function App() {
            job ?
            <Job job={job} handleBack={() => setJob()} /> :
            <div>
-             <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} setSearchResults={setSearchResults} />
+             <SearchBar dependencies={searchDependencies} setSearchQuery={setSearchQuery} setSearchResults={setSearchResults} />
              <JobList searchResults={searchResults} setJob={setJob} />
            </div>
          }

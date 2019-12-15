@@ -3,9 +3,9 @@ import {SessionContext} from '../sessions/session_utils';
 import { Input, Icon, Loader } from 'semantic-ui-react';
 import axios from 'axios';
 
-function SearchBar({searchQuery, setSearchQuery, setSearchResults}){
+function SearchBar({dependencies, setSearchQuery, setSearchResults}){
   const {session} = useContext(SessionContext);
-
+  const searchQuery = dependencies.searchQuery;
   const [loading, setLoading] = useState(false);
   const baseUrl = 'https://mighty-fortress-18011.herokuapp.com/jobs/search';
 
@@ -14,6 +14,8 @@ function SearchBar({searchQuery, setSearchQuery, setSearchResults}){
     const params = {q: searchQuery};
     if(session.email) params['email'] = session.email;
 
+    // Fix for favorite button state after viewing details.
+    setSearchResults([]);
     setLoading(true);
     axios.get(baseUrl, {
       params: params
@@ -23,7 +25,7 @@ function SearchBar({searchQuery, setSearchQuery, setSearchResults}){
       setLoading(false);
     })
     .catch(error => console.log(error));
-  }, [searchQuery]);
+  }, [searchQuery, dependencies.job]);
 
   const handleChange = event => {
     setSearchQuery(event.target.value);
