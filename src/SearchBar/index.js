@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
 import {SessionContext} from '../sessions/session_utils';
+import { Input, Icon } from 'semantic-ui-react'
 
 function SearchBar({setSearchResults}){
   const {session} = useContext(SessionContext);
@@ -7,7 +8,8 @@ function SearchBar({setSearchResults}){
   const baseUrl = 'https://mighty-fortress-18011.herokuapp.com/jobs/search?q='
 
   useEffect(() => {
-    const url = `${baseUrl}${searchQuery}&email=${session.email}`
+    let url = `${baseUrl}${searchQuery}`
+    if(session.email) url += `&email=${session.email}`;
     window.fetch(url)
       .then(response => response.json())
       .then(json => setSearchResults(json['jobs']))
@@ -19,12 +21,10 @@ function SearchBar({setSearchResults}){
   };
 
   return (
-    <input
-      type="text"
-      placeholder="Search Jobs"
-      value={searchQuery}
-      onChange={handleChange}
-    />
+    <Input value={searchQuery} onChange={handleChange} iconPosition='left' placeholder='Search jobs...' >
+      <Icon name='search' />
+      <input />
+    </Input>
   );
 }
 

@@ -5,6 +5,22 @@ import SearchBar from './SearchBar';
 import UserArea from './sessions/UserArea';
 import { SessionContext, getSessionCookie, setSessionCookie } from './sessions/session_utils';
 
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  List,
+  Menu,
+  Responsive,
+  Segment,
+  Sidebar,
+  Visibility,
+} from 'semantic-ui-react'
+
 function App() {
 
   const [searchResults, setSearchResults] = useState([]);
@@ -18,16 +34,33 @@ function App() {
   return (
     <div className="App">
       <SessionContext.Provider value={{session, setSession}}>
-        <UserArea />
-        <br />
-        {
-          job ?
-          <Job job={job} handleBack={() => setJob()} /> :
-          <div>
-            <SearchBar setSearchResults={setSearchResults} />
-            <JobList searchResults={searchResults} setJob={setJob} />
-          </div>
-        }
+
+        <Segment vertical>
+          <Menu fixed={'top'} size='large' widths={2}>
+            <Container>
+              <Menu.Item active>
+                Search Get on Board!
+              </Menu.Item>
+              <Menu.Item position='right'>
+                <UserArea />
+              </Menu.Item>
+            </Container>
+          </Menu>
+        </Segment>
+
+        <Container style={{paddingTop: '60px'}}>
+         {
+           job ?
+           <Job job={job} handleBack={() => setJob()} /> :
+           <div>
+             <SearchBar setSearchResults={setSearchResults} />
+             <JobList searchResults={searchResults} setJob={setJob} />
+           </div>
+         }
+        </Container>
+
+
+
       </SessionContext.Provider >
     </div>
   );
