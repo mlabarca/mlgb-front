@@ -1,15 +1,16 @@
 import React from "react";
 import { Item, Label } from 'semantic-ui-react'
+import FavoriteButton from './FavoriteButton'
 
 function JobItem({jobData, handleView}){
   const remoteText = jobData.remote ? 'Remote!' : 'In-office';
-  //
-  return (
-    <Item onClick={() => handleView(jobData)}>
-      <Item.Image size='tiny' src={jobData.logo_url}/>
 
-      <Item.Content>
-        <Item.Header>{jobData.title}</Item.Header>
+  return (
+    <Item>
+      <Item.Image size='tiny' src={jobData.logo_url} onClick={() => handleView(jobData)}/>
+      <Item.Content verticalAlign='middle'>
+
+        <Item.Header onClick={() => handleView(jobData)}>{jobData.title}</Item.Header>
           {
             jobData.city ?
             <Item.Meta>
@@ -26,6 +27,7 @@ function JobItem({jobData, handleView}){
             jobData.salary ?
             <Label icon='money bill alternate outline' content={jobData.salary} /> : ''
           }
+          <FavoriteButton jobData={jobData}/>
         </Item.Extra>
       </Item.Content>
     </Item>
