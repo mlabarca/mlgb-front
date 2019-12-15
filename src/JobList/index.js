@@ -1,4 +1,6 @@
 import React from "react";
+import { Item } from 'semantic-ui-react'
+import JobItem from './JobItem'
 
 function JobList({searchResults, setJob}){
   const handleView = jobItem => {
@@ -6,13 +8,13 @@ function JobList({searchResults, setJob}){
   }
 
   return (
-    <ul>
+    <Item.Group link divided>
       {
         searchResults.length > 0 ?
-        searchResults.map(jobItem => <li><button onClick={() => handleView(jobItem)}> VIEW </button>  {jobItem.title} - {jobItem.salary} - {jobItem.remote ? 'Remote!' : 'In-office'} - {jobItem.city} , {jobItem.country} - {jobItem.company ? jobItem.company.name : ''}</li>)
+        searchResults.map(jobItem => <JobItem jobData={jobItem} handleView={handleView}/>)
         : 'No current results for your search. Try something else!'
       }
-    </ul>
+    </Item.Group>
   );
 }
 

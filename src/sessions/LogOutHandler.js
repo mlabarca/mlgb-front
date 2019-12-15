@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {SessionContext} from './session_utils';
-import { Form, Button, Grid } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 
 const LogoutHandler = () => {
   const {session, setSession} = useContext(SessionContext);

@@ -5,21 +5,7 @@ import SearchBar from './SearchBar';
 import UserArea from './sessions/UserArea';
 import { SessionContext, getSessionCookie, setSessionCookie } from './sessions/session_utils';
 
-import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  List,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar,
-  Visibility,
-} from 'semantic-ui-react'
+import { Container, Menu, Segment } from 'semantic-ui-react'
 
 function App() {
 
@@ -48,7 +34,7 @@ function App() {
           </Menu>
         </Segment>
 
-        <Container style={{paddingTop: '60px'}}>
+        <Container style={{paddingTop: '100px'}}>
          {
            job ?
            <Job job={job} handleBack={() => setJob()} /> :

@@ -1,24 +1,41 @@
 import React from "react";
+import { Container, Button, Header, Image as ImageComponent, Segment } from 'semantic-ui-react'
 
 function Job({ job, handleBack }){
 
   return (
-    <div>
-      <button onClick={handleBack}> BACK </button>
-      <h1>
-        {job.title} ({job.seniority})
-      </h1>
-      <h2>{job.company.name}</h2>
-      <h3> Job description </h3>
-      <div dangerouslySetInnerHTML={{ __html: job.description }} />
-      <h3> Your functions will be:</h3>
-      <div dangerouslySetInnerHTML={{ __html: job.functions }} />
-      <h3> Your amazing benefits will be: </h3>
-      <div dangerouslySetInnerHTML={{ __html: job.benefits }} />
-      <h3> All about {job.company.name}: </h3>
-      <p> {job.company.about} </p>
-
-    </div>
+    <Container>
+      <Button primary onClick={handleBack}>
+        Back
+      </Button>
+      <Header as='h1' subheader={job.seniority}>
+        <ImageComponent circular src={job.logo_url} /> {job.title}
+      </Header>
+      <Header as='h2' content={job.company.name}>
+      </Header>
+      <Header as='h3' content='Your functions will be:'>
+      </Header>
+      <Segment dangerouslySetInnerHTML={{ __html: job.functions }}>
+      </Segment>
+      <Header as='h3' content='Job description'>
+      </Header>
+      <Segment dangerouslySetInnerHTML={{ __html: job.description }}>
+      </Segment>
+      {
+        job.benefits ?
+        <div>
+          <Header as='h3' content='Your amazing benefits will be:'>
+          </Header>
+          <Segment dangerouslySetInnerHTML={{ __html: job.benefits }}>
+          </Segment>
+        </div> : ''
+      }
+      <Header as='h3' content={`All about ${job.company.name}`}>
+      </Header>
+      <Segment>
+        {job.company.about}
+      </Segment>
+    </Container>
   );
 }
 
