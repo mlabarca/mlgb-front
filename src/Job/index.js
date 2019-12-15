@@ -8,8 +8,10 @@ function Job({ job, handleBack }){
       <Button primary onClick={handleBack}>
         Back
       </Button>
-      <Header as='h1' subheader={job.seniority}>
-        <ImageComponent circular src={job.logo_url} /> {job.title}
+      <Header as='h1'>
+        <ImageComponent src={job.logo_url} />
+        {job.title}
+        <Header sub>{job.seniority}</Header>
       </Header>
       <Header as='h2' content={job.company.name}>
       </Header>

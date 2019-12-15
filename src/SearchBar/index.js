@@ -1,24 +1,28 @@
 import React, {useState, useEffect, useContext} from "react";
 import {SessionContext} from '../sessions/session_utils';
-import { Input, Icon, Dimmer, Loader } from 'semantic-ui-react'
+import { Input, Icon, Loader } from 'semantic-ui-react';
+import axios from 'axios';
 
-function SearchBar({setSearchResults}){
+function SearchBar({searchQuery, setSearchQuery, setSearchResults}){
   const {session} = useContext(SessionContext);
-  const [searchQuery, setSearchQuery] = useState("");
+
   const [loading, setLoading] = useState(false);
-  const baseUrl = 'https://mighty-fortress-18011.herokuapp.com/jobs/search?q='
+  const baseUrl = 'https://mighty-fortress-18011.herokuapp.com/jobs/search';
 
   useEffect(() => {
-    let url = `${baseUrl}${searchQuery}`
-    if(session.email) url += `&email=${session.email}`;
+    if (searchQuery === '') return;
+    const params = {q: searchQuery};
+    if(session.email) params['email'] = session.email;
+
     setLoading(true);
-    window.fetch(url)
-      .then(response => response.json())
-      .then(json => {
-        setSearchResults(json['jobs']);
-        setLoading(false);
-      })
-      .catch(error => console.log(error));
+    axios.get(baseUrl, {
+      params: params
+    })
+    .then(json => {
+      setSearchResults(json.data.jobs);
+      setLoading(false);
+    })
+    .catch(error => console.log(error));
   }, [searchQuery]);
 
   const handleChange = event => {

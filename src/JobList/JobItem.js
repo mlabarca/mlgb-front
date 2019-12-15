@@ -22,7 +22,10 @@ function JobItem({jobData, handleView}){
           }
         <Item.Extra>
           <Label content={remoteText} />
-          <Label icon='money bill alternate outline' content={jobData.salary} />
+          {
+            jobData.salary ?
+            <Label icon='money bill alternate outline' content={jobData.salary} /> : ''
+          }
         </Item.Extra>
       </Item.Content>
     </Item>

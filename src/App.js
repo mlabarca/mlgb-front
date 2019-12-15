@@ -11,6 +11,7 @@ function App() {
 
   const [searchResults, setSearchResults] = useState([]);
   const [job, setJob] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
   const [session, setSession] = useState(getSessionCookie());
 
   useEffect(() => {
@@ -39,7 +40,7 @@ function App() {
            job ?
            <Job job={job} handleBack={() => setJob()} /> :
            <div>
-             <SearchBar setSearchResults={setSearchResults} />
+             <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} setSearchResults={setSearchResults} />
              <JobList searchResults={searchResults} setJob={setJob} />
            </div>
          }

@@ -11,7 +11,7 @@ function JobList({searchResults, setJob}){
     <Item.Group link divided>
       {
         searchResults.length > 0 ?
-        searchResults.map(jobItem => <JobItem jobData={jobItem} handleView={handleView}/>)
+        searchResults.map(jobItem => <JobItem key={jobItem.id} jobData={jobItem} handleView={handleView}/>)
         : 'No current results for your search. Try something else!'
       }
     </Item.Group>
