@@ -19,10 +19,10 @@ const LoginHandler = () => {
           <label>Email</label>
           <Input type='email' onChange={e => setEmail(e.target.value)} iconPosition='left' placeholder='Login to store your favs!' >
             <Icon name='at' />
-            <input />
+            <input className='emailSignIn'/>
           </Input>
         </Form.Field>
-        <Button type='submit'>Sign up!</Button>
+        <Button secondary type='submit'>Sign up!</Button>
       </Form.Group>
     </Form>
 

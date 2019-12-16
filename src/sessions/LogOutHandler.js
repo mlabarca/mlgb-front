@@ -9,7 +9,7 @@ const LogoutHandler = () => {
   return (
     <Grid columns={2}>
       <Grid.Column>
-        <p> Your're logged in as {session.email}.</p>
+        <p> You are logged in as {session.email}.</p>
       </Grid.Column>
 
       <Grid.Column>

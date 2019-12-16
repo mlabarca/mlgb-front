@@ -35,7 +35,7 @@ function SearchBar({dependencies, setSearchQuery, setSearchResults}){
       <div>
         <Input value={searchQuery} onChange={handleChange} iconPosition='left' placeholder='Search jobs...' >
           <Icon name='search' />
-          <input />
+          <input className='searchBox' />
         </Input>
         <Loader active={loading}/>
       </div>

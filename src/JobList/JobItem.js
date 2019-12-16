@@ -10,7 +10,7 @@ function JobItem({jobData, handleView}){
       <Item.Image size='tiny' src={jobData.logo_url} onClick={() => handleView(jobData)}/>
       <Item.Content verticalAlign='middle'>
 
-        <Item.Header onClick={() => handleView(jobData)}>{jobData.title}</Item.Header>
+        <Item.Header className='jobItem' onClick={() => handleView(jobData)}>{jobData.title}</Item.Header>
           {
             jobData.city ?
             <Item.Meta>
